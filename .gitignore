@@ -1,0 +1,5 @@
+# Ignore compiled object files
+*.o
+
+# Ignore workspace files
+*.code-workspace

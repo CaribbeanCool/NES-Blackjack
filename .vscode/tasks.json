@@ -1,0 +1,63 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Assemble task4.asm",
+			"type": "shell",
+			"command": "ca65",
+			"args": [
+				"./task3-4/src/task4.asm"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Assemble reset.asm",
+			"type": "shell",
+			"command": "ca65",
+			"args": [
+				"./task3-4/src/reset.asm"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Assemble Controllers",
+			"type": "shell",
+			"command": "ca65",
+			"args": [
+				"./task3-4/src/controllers.asm"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Link files",
+			"type": "shell",
+			"command": "ld65",
+			"args": [
+				"./task3-4/src/reset.o",
+				"./task3-4/src/task4.o",
+				"./task3-4/src/controllers.o",
+				"-C",
+				"nes.cfg",
+				"-o",
+				"./task3-4/src/task4.nes"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Build NES Project",
+			"dependsOn": [
+				"Assemble task4.asm",
+				"Assemble reset.asm",
+				"Assemble Controllers",
+				"Link files"
+			],
+			"type": "shell",
+			"command": "echo Build complete",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": []
+		}
+	]
+}
